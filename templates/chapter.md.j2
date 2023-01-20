@@ -1,0 +1,16 @@
+{% if marp_chapter_backgroundColor is defined %}
+<!-- _backgroundColor: {{ marp_chapter_backgroundColor }} -->
+{% endif %}
+{% if marp_chapter_backgroundImage is defined %}
+<!-- _backgroundImage: url({{ marp_chapter_backgroundImage }}) -->
+{% endif %}
+{% if slide.chapter_header is defined %}
+<!-- header: '{{ slide.chapter_header }}' -->
+{% endif %}
+{% if slide.chapter_footer is defined %}
+<!-- footer: '{{ slide.chapter_footer }}' -->
+{% endif %}
+
+# {{ slide.title }}
+
+{{ slide.chapter }}

@@ -1,7 +1,0 @@
----
-
-- hosts: localhost
-  gather_facts: false
-  tasks:
-    - import_role:
-        name: mmul.kpa_marp_slides_creator

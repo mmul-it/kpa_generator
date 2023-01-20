@@ -1,9 +1,52 @@
 ---
 
-marp_output_file: "{{ playbook_dir }}/slides/slides.md"
+# Location of your KPA project
+kpa_project_dir: "{{ playbook_dir }}"
+
+# Marp Markdown output file destination
+marp_output_file: "{{ kpa_project_dir }}/slides.md"
+
+# Marp theme (default, gaia, uncover or a custom theme that you will need to create)
 marp_theme: default
-marp_backgroundColor: '#ffffff'
+
+# Add slide number
 marp_paginate: false
-marp_header: true
-marp_footer: true
-marp_slides: {}
+
+# Author & Copyright info
+marp_author: 'My author'
+marp_copyright: '© 2023 My copyright'
+
+# Cover slide details (set cover: true on marp_slides entry)
+marp_cover_backgroundColor: '#FFCCE1' # marp_cover_backgroundImage to pass an image
+marp_cover_template: "templates/cover.md.j2"
+marp_cover_header: null
+marp_cover_footer: "**{{ marp_author }}** | _{{ marp_copyright }}_"
+
+# Chapter slide details
+marp_chapter_backgroundColor: '#FAFFC7'
+marp_chapter_template: "templates/chapter.md.j2"
+
+# Common slides background color
+marp_backgroundColor: '#D7EEFF' # marp_backgroundImage to use an image
+marp_header: true # Will show {{ marp_title }} | {{ marp_author }}
+marp_footer: true # Will show {{ slide.chapter }} | {{ slide.title }}
+
+# Slide set title
+marp_title: "My slide set"
+
+# Slide list, this is what KPA (https://github.com/mmul-it/kpa) is meant for
+marp_slides:
+  # Cover slide (doesn't need content:)
+  - cover: true
+    title: "{{ marp_title }}"
+    subtitle: "DAY ONE"
+  # First Knowledge Pod
+  - chapter: 'DAY ONE - First Knowledge Pod'
+    title: 'Topic 1'
+    chapter_header: "A custom header for this specific chapter ONE"
+    content: "{{ kpa_project_dir }}/contents/knowledge-pod-1.md"
+  # Second Knowledge Pod
+  - chapter: 'DAY ONE - Second Knowledge Pod'
+    title: 'Topic 2'
+    chapter_footer: "A custom footer for this specific chapter TWO"
+    content: "{{ kpa_project_dir }}/contents/knowledge-pod-2.md"

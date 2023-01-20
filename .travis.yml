@@ -1,0 +1,5 @@
+script:
+  # Syntax check
+  - ansible-playbook tests/kpa_marp_slides_creator.yml -i localhost --syntax-check
+  # Effective execution (should produce a ./tests/slide.md)
+  - ansible-playbook tests/kpa_marp_slides_creator.yml -i localhost

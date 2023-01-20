@@ -1,0 +1,16 @@
+{% if marp_cover_backgroundColor is defined %}
+<!-- _backgroundColor: {{ marp_cover_backgroundColor }} -->
+{% endif %}
+{% if marp_cover_backgroundImage is defined %}
+<!-- _backgroundImage: url({{ marp_cover_backgroundImage }}) -->
+{% endif %}
+{% if marp_cover_header is defined %}
+<!-- header: '{{ marp_cover_header }}' -->
+{% endif %}
+{% if marp_cover_footer is defined %}
+<!-- footer: '{{ marp_cover_footer }}' -->
+{% endif %}
+
+# {{ slide.title }}
+
+## {{ slide.subtitle | replace("\n","<br>") }}
