@@ -1,8 +1,8 @@
 ---
 theme: {{ marp_theme }}
-backgroundColor: {{ marp_backgroundColor }}
-{% if marp_backgroundImage is defined %}
-backgroundImage: url('{{ marp_backgroundImage }}')
+backgroundColor: {{ marp_background_color }}
+{% if marp_background_image is defined %}
+backgroundImage: url('{{ marp_background_image }}')
 {% endif %}
 {% if marp_author is defined %}
 author: {{ marp_author }}

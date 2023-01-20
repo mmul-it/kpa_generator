@@ -6,7 +6,7 @@ kpa_project_dir: "{{ playbook_dir }}"
 # Marp Markdown output file destination
 marp_output_file: "{{ kpa_project_dir }}/slides.md"
 
-# Marp theme (default, gaia, uncover or a custom theme that you will need to create)
+# Marp theme (default, gaia, uncover or a custom theme)
 marp_theme: default
 
 # Add slide number
@@ -17,19 +17,21 @@ marp_author: 'My author'
 marp_copyright: '© 2023 My copyright'
 
 # Cover slide details (set cover: true on marp_slides entry)
-marp_cover_backgroundColor: '#FFCCE1' # marp_cover_backgroundImage to pass an image
+# marp_cover_background_image to pass an image path/url
+marp_cover_background_color: '#FFCCE1'
 marp_cover_template: "templates/cover.md.j2"
 marp_cover_header: null
 marp_cover_footer: "**{{ marp_author }}** | _{{ marp_copyright }}_"
 
 # Chapter slide details
-marp_chapter_backgroundColor: '#FAFFC7'
+marp_chapter_background_color: '#FAFFC7'
 marp_chapter_template: "templates/chapter.md.j2"
 
 # Common slides background color
-marp_backgroundColor: '#D7EEFF' # marp_backgroundImage to use an image
-marp_header: true # Will show {{ marp_title }} | {{ marp_author }}
-marp_footer: true # Will show {{ slide.chapter }} | {{ slide.title }}
+# marp_background_image to use an image path/url
+marp_background_color: '#D7EEFF'
+marp_header: true  # Will show {{ marp_title }} | {{ marp_author }}
+marp_footer: true  # Will show {{ slide.chapter }} | {{ slide.title }}
 
 # Slide set title
 marp_title: "My slide set"

@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
-  connection: local 
+  connection: local
+  name: Use a KPA Project to create a Marp Markdown compatible file
   roles:
     - role: ../..
