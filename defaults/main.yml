@@ -33,10 +33,10 @@ marp_background_color: '#D7EEFF'
 marp_header: true  # Will show {{ marp_title }} | {{ marp_author }}
 marp_footer: true  # Will show {{ slide.chapter }} | {{ slide.title }}
 
-# Slide set title
-marp_title: "My slide set"
+# Slides set title
+marp_title: "My slides set"
 
-# Slide list, this is what KPA (https://github.com/mmul-it/kpa) is meant for
+# Slides list, this is what KPA (https://github.com/mmul-it/kpa) is meant for
 marp_slides:
   # Cover slide (doesn't need content:)
   - cover: true
