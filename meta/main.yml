@@ -1,0 +1,11 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: "rascasoft"
+  description: "This roles takes a KPA project (https://github.com/mmul-it/kpa) and create a single Markdown file that can be processed using Marp (https://marp.app/)."
+  license: license (MIT)
+  galaxy_tags:
+    - kpa
+    - marp
+    - markdown

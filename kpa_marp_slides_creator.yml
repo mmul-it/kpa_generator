@@ -4,4 +4,4 @@
   gather_facts: false
   tasks:
     - import_role:
-        name: marp-slides-creator
+        name: mmul.kpa_marp_slides_creator
