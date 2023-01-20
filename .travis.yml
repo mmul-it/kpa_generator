@@ -1,9 +1,28 @@
 ---
 
+dist: jammy
+
+language: python
+
+python:
+  - "3.10.5"
+
+services:
+  - docker
+
+env:
+  - ANSIBLE_INVENTORY_UNPARSED_WARNING=False ANSIBLE_LOCALHOST_WARNING=False
+
 script:
-  # Syntax check
+  # YAML check
+  - yamllint tests/kpa_marp_slides_creator.yml
+  # Ansible Linter check
+  - ansible-lint tests/kpa_marp_slides_creator.yml
+  # Ansible syntax check
   - ansible-playbook tests/kpa_marp_slides_creator.yml
-    -i localhost --syntax-check
-  # Effective execution (should produce a ./tests/slide.md)
+    --syntax-check
+  # Ansible effective execution (should produce a ./tests/slide.md)
   - ansible-playbook tests/kpa_marp_slides_creator.yml
-    -i localhost
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
