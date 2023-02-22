@@ -4,4 +4,4 @@
   ansible.builtin.template:
     src: slides.md.j2
     dest: "{{ marp_output_file }}"
-    mode: 0640
+    mode: '0640'

@@ -1,16 +1,19 @@
 kpa_marp_slides_generator
 =========================
 
-This role uses a [KPA Project](https://github.com/mmul-it/kpa) to generate a [Marp](https://marp.app/#get-started) compatible Markdown file usable to generate beautiful presentations in `html`, `pdf` and `ppt` formats.
+This role uses a [KPA Project](https://github.com/mmul-it/kpa) to generate a
+[Marp](https://marp.app/#get-started) compatible Markdown file usable to
+generate beautiful presentations in `html`, `pdf` and `ppt` formats.
 
-[![Build Status](https://app.travis-ci.com/mmul-it/kpa_marp_slides_generator.svg?branch=main)](https://app.travis-ci.com/mmul-it/kpa_marp_slides_generator)
+[![Lint and test project](https://github.com/mmul-it/kpa_marp_slides_generator/actions/workflows/main.yml/badge.svg)](https://github.com/mmul-it/kpa_marp_slides_generator/actions/workflows/main.yml)
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-kpa_marp_slides_generator-blue.svg)](https://galaxy.ansible.com/mmul/kpa_marp_slides_generator)
 
 
 Role Variables
 --------------
 
-To get a minimal slides set you can rely on the defaults, and then change everything you need to customize your result:
+To get a minimal slides set you can rely on the defaults, and then change
+everything you need to customize your result:
 
 ```yaml
 ---
@@ -72,7 +75,9 @@ marp_slides:
 Example Playbook
 ----------------
 
-To test this role and generate a simple Markdown usable with Marp, just use the [tests/kpa_marp_slides_creator.yml](tests/kpa_marp_slides_creator.yml) playbook as it is:
+To test this role and generate a simple Markdown usable with Marp, just use the
+[tests/kpa_marp_slides_generator.yml](tests/kpa_marp_slides_generator.yml)
+playbook as it is:
 
 ```yaml
 ---
@@ -88,7 +93,7 @@ To test this role and generate a simple Markdown usable with Marp, just use the 
 And execute it using `ansible-playbook`:
 
 ```console
-> ansible-playbook tests/kpa_marp_slides_creator.yml
+> ansible-playbook tests/kpa_marp_slides_generator.yml
 [WARNING]: No inventory was parsed, only implicit localhost is available
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
 
@@ -101,7 +106,8 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-This will generate a file named [tests/slides.md](tests/slides.md) that will be usable for marp, like this:
+This will generate a file named [tests/slides.md](tests/slides.md) that will be
+usable for marp, like this:
 
 ```console
 > docker run \
@@ -116,7 +122,8 @@ This will generate a file named [tests/slides.md](tests/slides.md) that will be 
 
 That will give you a [tests/slides.html](tests/slides.html) presentation.
 
-For details about using this role in the training and documentation context, have a look at the [KPA GitHub project page](https://github.com/mmul-it/kpa).
+For details about using this role in the training and documentation context,
+have a look at the [KPA GitHub project page](https://github.com/mmul-it/kpa).
 
 License
 -------

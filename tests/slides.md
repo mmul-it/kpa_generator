@@ -11,7 +11,7 @@ marp: true
 <!-- header: '' -->
 <!-- footer: '**My author** | _© 2023 My copyright_' -->
 
-# My slide set
+# My slides set
 
 ## DAY ONE
 
@@ -28,7 +28,7 @@ DAY ONE - First Knowledge Pod
 
 ---
 
-<!-- header: 'My slide set | My author' -->
+<!-- header: 'My slides set | My author' -->
 <!-- footer: 'DAY ONE - First Knowledge Pod | Topic 1' -->
 
 # Lesson 1
@@ -59,7 +59,7 @@ DAY ONE - Second Knowledge Pod
 
 ---
 
-<!-- header: 'My slide set | My author' -->
+<!-- header: 'My slides set | My author' -->
 <!-- footer: 'DAY ONE - Second Knowledge Pod | Topic 2' -->
 
 # Lesson 1
