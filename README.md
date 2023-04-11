@@ -21,6 +21,9 @@ everything you need to customize your result:
 # Location of your KPA project
 kpa_project_dir: "{{ playbook_dir }}"
 
+# Schedule Markedown output file destination
+schedule_output_file: "{{ kpa_project_dir }}/slides.schedule.md"
+
 # Marp Markdown output file destination
 marp_output_file: "{{ kpa_project_dir }}/slides.md"
 
@@ -99,28 +102,44 @@ And execute it using `ansible-playbook`:
 
 PLAY [Use a KPA Project to create a Marp Markdown compatible file] *******************************************************************************************************
 
-TASK [../.. : Creating the template] *************************************************************************************************************************************
-ok: [localhost]
+TASK [../.. : Create Marp slides markdown] ****************************************************************************************************************
+changed: [localhost]
 
-PLAY RECAP ***************************************************************************************************************************************************************
-localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+TASK [../.. : Create schedule markdown] *******************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP ************************************************************************************************************************************************
+localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-This will generate a file named [tests/slides.md](tests/slides.md) that will be
-usable for marp, like this:
+This will generate two files:
 
-```console
-> docker run \
-  --rm \
-  -e MARP_USER=1000:1000 \
-  -e LANG=en_US.UTF-8 \
-  -v $PWD:/home/marp/app/ \
-  marpteam/marp-cli --html true tests/slides.md
-[  INFO ] Converting 1 markdown...
-[  INFO ] tests/slides.md => tests/slides.html
-```
+1. A file named [tests/slides.md](tests/slides.md) that will be usable for marp,
+   like this:
 
-That will give you a [tests/slides.html](tests/slides.html) presentation.
+   ```console
+   > docker run \
+     --rm \
+     -e MARP_USER=1000:1000 \
+     -e LANG=en_US.UTF-8 \
+     -v $PWD:/home/marp/app/ \
+     marpteam/marp-cli --html true tests/slides.md
+   [  INFO ] Converting 1 markdown...
+   [  INFO ] tests/slides.md => tests/slides.html
+   ```
+
+   That will give you a [tests/slides.html](tests/slides.html) presentation.
+
+2. A file named [tests/slides.schedule.md](tests/slides.schedule.md) that will
+   be usable by `pandoc`, like this:
+
+   ```console
+   > pandoc tests/slides.schedule.md -o tests/slides.schedule.pdf
+   ```
+
+   That will give you a [tests/slides.schedule.pdf](tests/slides.schedule.pdf)
+   pdf containing the schedule taken from the slides.
+   Note: `pandoc` supports templates that can be used to customize the pdf.
 
 For details about using this role in the training and documentation context,
 have a look at the [KPA GitHub project page](https://github.com/mmul-it/kpa).

@@ -1,0 +1,36 @@
+---
+title: "**{{ marp_title }}**"
+author: "{{ marp_author }}"
+date: "{% if marp_date is defined %}{{ marp_date }}{% else %}{{ lookup('pipe', 'date +%Y-%m-%d') }}{% endif %}"
+{% if schedule_background_image is defined %}
+background-image: "{{ schedule_background_image }}"
+{% endif %}
+---
+
+{# Starting course schedule print #}
+{% for slide in marp_slides %}
+{% if slide.cover is defined and slide.cover | bool and slide.subtitle is defined %}
+
+\newpage
+
+## **{{ slide.subtitle }}**
+{% else %}
+{% if slide.backcover is defined and slide.backcover | bool and slide.subtitle is defined %}
+
+## {{ slide.subtitle }}
+{% else %}
+
+- **{{ slide.title }}**
+{% set text = lookup('file', slide.content) %}
+{% set topics = [] %}
+{% for line in text.split('\n') %}
+{% if line.startswith('# ') or line.startswith('## ') %}
+{{ topics.append(line | replace('#', '') | regex_replace(' / .*', '')) }}
+{%- endif %}
+{% endfor %}
+{% for topic in topics | unique %}
+  - {{ topic }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{%- endfor %}
