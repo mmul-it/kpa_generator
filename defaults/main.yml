@@ -3,11 +3,11 @@
 # Location of your KPA project
 kpa_project_dir: "{{ playbook_dir }}"
 
+# Schedule Markedown output file destination
+schedule_output_file: "{{ kpa_project_dir }}/slides.schedule.md"
+
 # Marp Markdown output file destination
 marp_output_file: "{{ kpa_project_dir }}/slides.md"
-
-# Course/Presentation schedule markedown
-schedule_markdown: "{{ kpa_project_dir }}/slides.schedule.md"
 
 # Marp theme (default, gaia, uncover or a custom theme)
 marp_theme: default

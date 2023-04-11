@@ -11,7 +11,7 @@ paginate: {{ marp_paginate }}
 marp: true
 {# Starting with effective slides #}
 {% for slide in marp_slides %}
-{% if slide.cover is defined and slide.cover | bool %}
+{% if slide.cover is defined and slide.cover | bool or slide.backcover is defined and slide.backcover | bool%}
 
 ---
 

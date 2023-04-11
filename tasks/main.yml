@@ -1,13 +1,13 @@
 ---
 
-- name: Create the course slides set marp markdown
+- name: Create Marp slides markdown
   ansible.builtin.template:
     src: slides.md.j2
     dest: "{{ marp_output_file }}"
     mode: '0640'
 
-- name: Create the course schedule markdown
+- name: Create schedule markdown
   ansible.builtin.template:
-    src: course-schedule.md.j2
-    dest: "{{ schedule_markdown }}"
+    src: schedule.md.j2
+    dest: "{{ schedule_output_file }}"
     mode: '0640'

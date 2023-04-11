@@ -1,27 +1,9 @@
 ---
-title: "{{ marp_title }}"
+title: "**{{ marp_title }}**"
 author: "{{ marp_author }}"
 date: "{% if marp_date is defined %}{{ marp_date }}{% else %}{{ lookup('pipe', 'date +%Y-%m-%d') }}{% endif %}"
-output:
-  pdf_document:
-    fig_caption: yes
-    keep_tex: yes
-    number_sections: yes
-geometry: "left=30px,right=30px,top=70px,bottom=160px"
-fontfamily: helvet
-header-includes:
- \renewcommand{\familydefault}{\sfdefault}
-{% if markdown_background_image is defined %}
- \usepackage{background}
- \backgroundsetup{
-  scale=1,
-  opacity=1,
-  angle=0,
-  pages=all,
-  contents={
-    \includegraphics[width=\paperwidth,height=\paperheight]{{ '{' + markdown_background_image + '}' }}
-  }
- }
+{% if schedule_background_image is defined %}
+background-image: "{{ schedule_background_image }}"
 {% endif %}
 ---
 
@@ -31,19 +13,24 @@ header-includes:
 
 \newpage
 
+## **{{ slide.subtitle }}**
+{% else %}
+{% if slide.backcover is defined and slide.backcover | bool and slide.subtitle is defined %}
+
 ## {{ slide.subtitle }}
 {% else %}
 
-- {{ slide.title }}
+- **{{ slide.title }}**
 {% set text = lookup('file', slide.content) %}
 {% set topics = [] %}
 {% for line in text.split('\n') %}
-{% if line.startswith('#') or line.startswith('##') %}
+{% if line.startswith('# ') or line.startswith('## ') %}
 {{ topics.append(line | replace('#', '') | regex_replace(' / .*', '')) }}
 {%- endif %}
 {% endfor %}
 {% for topic in topics | unique %}
   - {{ topic }}
 {% endfor %}
+{% endif %}
 {% endif %}
 {%- endfor %}
