@@ -2,12 +2,12 @@
 title: "**{{ marp_title }}**"
 author: "{{ marp_author }}"
 date: "{% if marp_date is defined %}{{ marp_date }}{% else %}{{ lookup('pipe', 'date +%Y-%m-%d') }}{% endif %}"
-{% if schedule_background_image is defined %}
-background-image: "{{ schedule_background_image }}"
+{% if pandoc_agenda_background_image is defined %}
+background-image: "{{ pandoc_agenda_background_image }}"
 {% endif %}
 ---
 
-{# Starting course schedule print #}
+{# Starting course agenda print #}
 {% for slide in marp_slides %}
 {% if slide.cover is defined and slide.cover | bool and slide.subtitle is defined %}
 

@@ -17,11 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: YAML check
-        run: yamllint tests/kpa_marp_slides_generator.yml
+        run: yamllint tests/kpa_generator.yml
       - name: Ansible Linter check
-        run: ansible-lint tests/kpa_marp_slides_generator.yml
+        run: ansible-lint tests/kpa_generator.yml
       - name: Ansible syntax check
-        run: ansible-playbook --syntax-check tests/kpa_marp_slides_generator.yml
+        run: ansible-playbook --syntax-check tests/kpa_generator.yml
 
   test:
     runs-on: ubuntu-latest
@@ -34,8 +34,12 @@ jobs:
       - name: Ansible execution preparation (remove tests/*.md)
         run: rm -f tests/*.md
       - name: Ansible execution (should produce the two .md files)
-        run: ansible-playbook tests/kpa_marp_slides_generator.yml
+        run: ansible-playbook tests/kpa_generator.yml
       - name: Check tests/slides.md file existence
         run: test -f tests/slides.md
-      - name: Check tests/slides.schedule.md file existence
-        run: test -f tests/slides.schedule.md
+      - name: Check tests/slides.pdf file existence
+        run: test -f tests/slides.pdf
+      - name: Check tests/slides.agenda.md file existence
+        run: test -f tests/slides.agenda.md
+      - name: Check tests/slides.agenda.pdf file existence
+        run: test -f tests/slides.agenda.pdf

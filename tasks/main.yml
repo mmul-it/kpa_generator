@@ -3,11 +3,35 @@
 - name: Create Marp slides markdown
   ansible.builtin.template:
     src: slides.md.j2
-    dest: "{{ marp_output_file }}"
+    dest: "{{ marp_output_markdown }}"
     mode: '0640'
 
-- name: Create schedule markdown
+- name: Create Pandoc agenda markdown
   ansible.builtin.template:
-    src: schedule.md.j2
-    dest: "{{ schedule_output_file }}"
+    src: agenda.md.j2
+    dest: "{{ pandoc_agenda_output_markdown }}"
     mode: '0640'
+
+- name: Generate pdf slides with Marp
+  ansible.builtin.shell: |
+    marp --pdf \
+      --allow-local-files \
+      --html \
+      {% if marp_theme_file is defined %}--theme {{ marp_theme_file }}{% endif %} \
+      -o {{ marp_output_pdf }} \
+      {{ marp_output_markdown }}
+  when:
+    - marp_output_pdf is defined
+  register: marp_cmd
+  changed_when: marp_cmd.rc == 0
+
+- name: Generate pdf agenda with Pandoc
+  ansible.builtin.shell: |
+    pandoc \
+      {% if pandoc_agenda_template_file is defined %}--template={{ pandoc_agenda_template_file }}{% endif %} \
+      {{ pandoc_agenda_output_markdown }} \
+      -o {{ pandoc_agenda_output_pdf }}
+  when:
+    - pandoc_agenda_output_pdf is defined
+  register: pandoc_cmd
+  changed_when: pandoc_cmd.rc == 0
