@@ -1,13 +1,13 @@
 ---
 
 galaxy_info:
-  role_name: kpa_marp_slides_generator
+  role_name: kpa_generator
   namespace: mmul
   author: Raoul Scarazzini (rasca@mmul.it)
   description: |
-    This role takes a KPA project (https://github.com/mmul-it/kpa)
-    and create a single Markdown file that can be processed using
-    Marp (https://marp.app/).
+    This role takes a KPA project (https://github.com/mmul-it/kpa),
+    creates a markdown files for both slides (to be processed by Marp)
+    and agenda (to be processed by pandoc) and generates rendered pdf files.
   license: license (MIT)
   min_ansible_version: '2'
   platforms:

@@ -15,14 +15,14 @@ env:
 
 script:
   # YAML check
-  - yamllint tests/kpa_marp_slides_creator.yml
+  - yamllint tests/kpa_generator.yml
   # Ansible Linter check
-  - ansible-lint tests/kpa_marp_slides_creator.yml
+  - ansible-lint tests/kpa_generator.yml
   # Ansible syntax check
-  - ansible-playbook tests/kpa_marp_slides_creator.yml
+  - ansible-playbook tests/kpa_generator.yml
     --syntax-check
   # Ansible effective execution (should produce a ./tests/slide.md)
-  - ansible-playbook tests/kpa_marp_slides_creator.yml
+  - ansible-playbook tests/kpa_generator.yml
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

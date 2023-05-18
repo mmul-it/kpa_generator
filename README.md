@@ -1,12 +1,14 @@
-kpa_marp_slides_generator
+kpa_generator
 =========================
 
-This role uses a [KPA Project](https://github.com/mmul-it/kpa) to generate a
-[Marp](https://marp.app/#get-started) compatible Markdown file usable to
-generate beautiful presentations in `html`, `pdf` and `ppt` formats.
+This role uses a [KPA Project](https://github.com/mmul-it/kpa) to generate
+[Marp](https://marp.app/#get-started) and [Pandoc](https://pandoc.org/MANUAL.html) compatible Markdown files usable to
+create beautiful presentations in `html`, `pdf` and `ppt` format with their
+agenda.
+By default it automates the creation of a pdf slides set and their pdf agenda.
 
-[![Lint and test project](https://github.com/mmul-it/kpa_marp_slides_generator/actions/workflows/main.yml/badge.svg)](https://github.com/mmul-it/kpa_marp_slides_generator/actions/workflows/main.yml)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-kpa_marp_slides_generator-blue.svg)](https://galaxy.ansible.com/mmul/kpa_marp_slides_generator)
+[![Lint and test project](https://github.com/mmul-it/kpa_generator/actions/workflows/main.yml/badge.svg)](https://github.com/mmul-it/kpa_generator/actions/workflows/main.yml)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-kpa_generator-blue.svg)](https://galaxy.ansible.com/mmul/kpa_generator)
 
 
 Role Variables
@@ -22,7 +24,7 @@ everything you need to customize your result:
 kpa_project_dir: "{{ playbook_dir }}"
 
 # Schedule Markedown output file destination
-schedule_output_file: "{{ kpa_project_dir }}/slides.schedule.md"
+agenda_output_file: "{{ kpa_project_dir }}/slides.schedule.md"
 
 # Marp Markdown output file destination
 marp_output_file: "{{ kpa_project_dir }}/slides.md"
@@ -79,7 +81,7 @@ Example Playbook
 ----------------
 
 To test this role and generate a simple Markdown usable with Marp, just use the
-[tests/kpa_marp_slides_generator.yml](tests/kpa_marp_slides_generator.yml)
+[tests/kpa_generator.yml](tests/kpa_generator.yml)
 playbook as it is:
 
 ```yaml
@@ -96,7 +98,7 @@ playbook as it is:
 And execute it using `ansible-playbook`:
 
 ```console
-> ansible-playbook tests/kpa_marp_slides_generator.yml
+> ansible-playbook tests/kpa_generator.yml
 [WARNING]: No inventory was parsed, only implicit localhost is available
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
 
