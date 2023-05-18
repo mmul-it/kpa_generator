@@ -5,7 +5,7 @@ kpa_project_dir: "{{ playbook_dir }}"
 
 # Pandoc Agenda Markedown output file destination
 pandoc_agenda_output_markdown: "{{ kpa_project_dir }}/slides.agenda.md"
-pandoc_agenda_output_pdf: "{{ kpa_project_dir }}/slides.agenda.md"
+pandoc_agenda_output_pdf: "{{ kpa_project_dir }}/slides.agenda.pdf"
 
 # Marp Markdown output file destination
 marp_output_markdown: "{{ kpa_project_dir }}/slides.md"

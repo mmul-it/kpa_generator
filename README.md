@@ -24,7 +24,7 @@ everything you need to customize your result:
 kpa_project_dir: "{{ playbook_dir }}"
 
 # Schedule Markedown output file destination
-agenda_output_file: "{{ kpa_project_dir }}/slides.schedule.md"
+agenda_output_file: "{{ kpa_project_dir }}/slides.agenda.md"
 
 # Marp Markdown output file destination
 marp_output_file: "{{ kpa_project_dir }}/slides.md"
@@ -132,15 +132,15 @@ This will generate two files:
 
    That will give you a [tests/slides.html](tests/slides.html) presentation.
 
-2. A file named [tests/slides.schedule.md](tests/slides.schedule.md) that will
+2. A file named [tests/slides.agenda.md](tests/slides.agenda.md) that will
    be usable by `pandoc`, like this:
 
    ```console
-   > pandoc tests/slides.schedule.md -o tests/slides.schedule.pdf
+   > pandoc tests/slides.agenda.md -o tests/slides.agenda.pdf
    ```
 
-   That will give you a [tests/slides.schedule.pdf](tests/slides.schedule.pdf)
-   pdf containing the schedule taken from the slides.
+   That will give you a [tests/slides.agenda.pdf](tests/slides.agenda.pdf)
+   pdf containing the agenda taken from the slides.
    Note: `pandoc` supports templates that can be used to customize the pdf.
 
 For details about using this role in the training and documentation context,

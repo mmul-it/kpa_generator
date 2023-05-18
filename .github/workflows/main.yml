@@ -37,5 +37,5 @@ jobs:
         run: ansible-playbook tests/kpa_generator.yml
       - name: Check tests/slides.md file existence
         run: test -f tests/slides.md
-      - name: Check tests/slides.schedule.md file existence
-        run: test -f tests/slides.schedule.md
+      - name: Check tests/slides.agenda.md file existence
+        run: test -f tests/slides.agenda.md
