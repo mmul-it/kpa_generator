@@ -17,7 +17,7 @@
     marp --pdf \
       --allow-local-files \
       --html \
-      --theme {{ marp_theme_path }} \
+      {% if marp_theme_file is defined %}--theme {{ marp_theme_file }}{% endif %} \
       -o {{ marp_output_pdf }} \
       {{ marp_output_markdown }}
   when:
@@ -27,7 +27,8 @@
 
 - name: Generate pdf agenda with Pandoc
   ansible.builtin.shell: |
-    pandoc --template={{ pandoc_agenda_template_file }} \
+    pandoc \
+      {% if pandoc_agenda_template_file is defined %}--template={{ pandoc_agenda_template_file }}{% endif %} \
       {{ pandoc_agenda_output_markdown }} \
       -o {{ pandoc_agenda_output_pdf }}
   when:
