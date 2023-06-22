@@ -25,10 +25,10 @@ marp: true
 ---
 
 {% if marp_header is defined and marp_header | bool %}
-<!-- header: '{{ marp_title }} | {{ marp_author }}' -->
+<!-- header: {{ marp_title }} | {{ marp_author }} -->
 {% endif %}
 {% if marp_footer is defined and marp_footer | bool %}
-<!-- footer: '{{ slide.chapter }} | {{ slide.title }}' -->
+<!-- footer: {{ slide.chapter }} | {{ slide.title }} -->
 {% endif %}
 
 {{ lookup('file', slide.content) }}
