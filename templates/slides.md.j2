@@ -4,13 +4,13 @@ backgroundColor: {{ marp_background_color }}
 {% if marp_background_image is defined %}
 backgroundImage: url('{{ marp_background_image }}')
 {% endif %}
-{% if marp_author is defined %}
-author: {{ marp_author }}
+{% if kpa_author is defined %}
+author: {{ kpa_author }}
 {% endif %}
 paginate: {{ marp_paginate }}
 marp: true
 {# Starting with effective slides #}
-{% for slide in marp_slides %}
+{% for slide in kpa_slides %}
 {% if slide.cover is defined and slide.cover | bool or slide.backcover is defined and slide.backcover | bool%}
 
 ---
@@ -25,7 +25,7 @@ marp: true
 ---
 
 {% if marp_header is defined and marp_header | bool %}
-<!-- header: {{ marp_title }} | {{ marp_author }} -->
+<!-- header: {{ kpa_title }} | {{ kpa_author }} -->
 {% endif %}
 {% if marp_footer is defined and marp_footer | bool %}
 <!-- footer: {{ slide.chapter }} | {{ slide.title }} -->

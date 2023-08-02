@@ -1,14 +1,14 @@
 ---
-title: "{{ marp_title }}"
-author: "{{ marp_author }}"
-date: "{% if marp_date is defined %}{{ marp_date }}{% else %}{{ lookup('pipe', 'date +%Y-%m-%d') }}{% endif %}"
+title: "{{ kpa_title }}"
+author: "{{ kpa_author }}"
+date: "{% if kpa_date is defined %}{{ kpa_date }}{% else %}{{ lookup('pipe', 'date +%Y-%m-%d') }}{% endif %}"
 {% if pandoc_agenda_background_image is defined %}
 background-image: "{{ pandoc_agenda_background_image }}"
 {% endif %}
 ---
 
 {# Starting course agenda print #}
-{% for slide in marp_slides %}
+{% for slide in kpa_slides %}
 {% if slide.cover is defined and slide.cover | bool and slide.subtitle is defined %}
 
 \newpage

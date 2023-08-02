@@ -20,12 +20,31 @@ everything you need to customize your result:
 ```yaml
 ---
 
+################
+# KPA settings #
+################
+
 # Location of your KPA project
 kpa_project_dir: "{{ playbook_dir }}"
+
+# Slide set title
+kpa_title: "My slides set"
+
+# Author & Copyright info
+kpa_author: 'My author'
+kpa_copyright: '© 2023 My copyright'
+
+###################
+# Pandoc settings #
+###################
 
 # Pandoc Agenda Markedown output files destination
 pandoc_agenda_output_markdown: "{{ kpa_project_dir }}/slides.agenda.md"
 pandoc_agenda_output_pdf: "{{ kpa_project_dir }}/slides.agenda.pdf"
+
+###################
+# Marp settings   #
+###################
 
 # Marp Markdown output files destination
 marp_output_markdown: "{{ kpa_project_dir }}/slides.md"
@@ -37,16 +56,12 @@ marp_theme: default
 # Add slide number
 marp_paginate: false
 
-# Author & Copyright info
-marp_author: 'My author'
-marp_copyright: '© 2023 My copyright'
-
-# Cover slide details (set cover: true on marp_slides entry)
+# Cover slide details (set cover: true on kpa_slides entry)
 # marp_cover_background_image to pass an image path/url
 marp_cover_background_color: '#FFCCE1'
 marp_cover_template: "templates/cover.md.j2"
 marp_cover_header: null
-marp_cover_footer: "**{{ marp_author }}** | _{{ marp_copyright }}_"
+marp_cover_footer: "**{{ kpa_author }}** | _{{ kpa_copyright }}_"
 
 # Chapter slide details
 marp_chapter_background_color: '#FAFFC7'
@@ -55,17 +70,18 @@ marp_chapter_template: "templates/chapter.md.j2"
 # Common slides background color
 # marp_background_image to use an image path/url
 marp_background_color: '#D7EEFF'
-marp_header: true  # Will show {{ marp_title }} | {{ marp_author }}
+marp_header: true  # Will show {{ kpa_title }} | {{ kpa_author }}
 marp_footer: true  # Will show {{ slide.chapter }} | {{ slide.title }}
 
-# Slide set title
-marp_title: "My slides set"
+##############
+# KPA slides #
+##############
 
 # Slide list, this is what KPA (https://github.com/mmul-it/kpa) is meant for
-marp_slides:
+kpa_slides:
   # Cover slide (doesn't need content:)
   - cover: true
-    title: "{{ marp_title }}"
+    title: "{{ kpa_title }}"
     subtitle: "DAY ONE"
   # First Knowledge Pod
   - chapter: 'DAY ONE - First Knowledge Pod'
