@@ -1,18 +1,18 @@
 ---
 
-name: Linter and test the project                                                        
-                                                                                
+name: Linter and test the project, then import in Ansible Galaxy
+
 env:
   ANSIBLE_INVENTORY_UNPARSED_WARNING: 'False'
   ANSIBLE_LOCALHOST_WARNING: 'False'
 
-on: [push]  
+on: [push]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: quay.io/mmul/kpa
+      image: ghcr.io/mmul-it/kpa
       options: --user root
     steps:
       - name: Checkout repository
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     container:
-      image: quay.io/mmul/kpa
+      image: ghcr.io/mmul-it/kpa:v1.0.0
       options: --user root
     steps:
       - name: Checkout repository
@@ -45,3 +45,14 @@ jobs:
         run: test -f tests/slides.agenda.md
       - name: Check tests/slides.agenda.pdf file existence
         run: test -f tests/slides.agenda.pdf
+
+  galaxy_import:
+    runs-on: ubuntu-latest
+    needs: test
+    container:
+      image: ghcr.io/mmul-it/kpa:v1.0.0
+      options: --user root
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Import in Ansible Galaxy
+        run: ansible-galaxy role import --token ${{ secrets.GALAXY_API_KEY }} ${{ github.repository_owner }} ${{ github.event.repository.name }}
