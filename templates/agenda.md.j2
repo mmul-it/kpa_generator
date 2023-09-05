@@ -23,10 +23,21 @@ background-image: "{{ pandoc_agenda_background_image }}"
 - {{ slide.title }}
 {% set text = lookup('file', slide.content) %}
 {% set topics = [] %}
+{% set ns = namespace(in_code_block = false) %}
 {% for line in text.split('\n') %}
+{% if line.startswith('```') %}
+{% if not ns.in_code_block|bool %}
+{% set ns.in_code_block = true %}
+{% else %}
+{% set ns.in_code_block = false %}
+{% endif %}
+{% else %}
+{% if not ns.in_code_block|bool %}
 {% if line.startswith('# ') or line.startswith('## ') %}
 {{ topics.append(line | replace('#', '') | regex_replace(' / .*', '')) }}
 {%- endif %}
+{% endif %}
+{% endif %}
 {% endfor %}
 {% for topic in topics | unique %}
   - {{ topic }}
