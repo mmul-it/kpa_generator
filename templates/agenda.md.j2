@@ -17,7 +17,7 @@ background-image: "{{ pandoc_agenda_background_image }}"
 {% else %}
 {% if slide.backcover is defined and slide.backcover | bool and slide.subtitle is defined %}
 
-## {{ slide.subtitle }}
+**{{ slide.subtitle }}**
 {% else %}
 
 - {{ slide.title }}
