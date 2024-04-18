@@ -29,6 +29,8 @@ pandoc_agenda_output_pdf: "{{ kpa_project_dir }}/slides.agenda.pdf"
 # Marp Markdown output file destination
 marp_output_markdown: "{{ kpa_project_dir }}/slides.md"
 marp_output_pdf: "{{ kpa_project_dir }}/slides.pdf"
+# Set marp_output_pptx to generate a PowerPoint compatible file
+# marp_output_pptx: "{{ kpa_project_dir }}/slides.pptx"
 
 # Marp theme (default, gaia, uncover or a custom theme)
 marp_theme: default

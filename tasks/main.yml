@@ -22,8 +22,21 @@
       {{ marp_output_markdown }}
   when:
     - marp_output_pdf is defined
-  register: marp_cmd
-  changed_when: marp_cmd.rc == 0
+  register: marp_pdf_cmd
+  changed_when: marp_pdf_cmd.rc == 0
+
+- name: Generate pptx slides with Marp
+  ansible.builtin.shell: |
+    marp --pptx \
+      --allow-local-files \
+      --html \
+      {% if marp_theme_file is defined %}--theme {{ marp_theme_file }}{% endif %} \
+      -o {{ marp_output_pptx }} \
+      {{ marp_output_markdown }}
+  when:
+    - marp_output_pptx is defined
+  register: marp_pptx_cmd
+  changed_when: marp_pptx_cmd.rc == 0
 
 - name: Generate pdf agenda with Pandoc
   ansible.builtin.shell: |

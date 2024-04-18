@@ -49,6 +49,8 @@ pandoc_agenda_output_pdf: "{{ kpa_project_dir }}/slides.agenda.pdf"
 # Marp Markdown output files destination
 marp_output_markdown: "{{ kpa_project_dir }}/slides.md"
 marp_output_pdf: "{{ kpa_project_dir }}/slides.pdf"
+# Set marp_output_pptx to generate a PowerPoint compatible file
+# marp_output_pptx: "{{ kpa_project_dir }}/slides.pptx"
 
 # Marp theme (default, gaia, uncover or a custom theme)
 marp_theme: default
@@ -95,6 +97,10 @@ kpa_slides:
     content: "{{ kpa_project_dir }}/contents/knowledge-pod-2.md"
 ```
 
+For example, to generate a `pptx` output file just set the `marp_output_pptx`
+variable, and the playbook will also run marp with the option to generate a
+Microsoft PowerPoint compatible file.
+
 Example Playbook
 ----------------
 
@@ -117,7 +123,7 @@ And execute it using `ansible-playbook`:
 
 ```console
 > ansible-playbook tests/kpa_generator.yml
-PLAY [Use a KPA Project to create Marp & Pandoc markdown fils and their pdf] ***
+PLAY [Use a KPA Project to create Marp & Pandoc markdown and slide decks] ******
 
 TASK [../.. : Create Marp slides markdown] *************************************
 changed: [localhost]
@@ -128,11 +134,14 @@ changed: [localhost]
 TASK [../.. : Generate pdf slides with Marp] ***********************************
 changed: [localhost]
 
+TASK [../.. : Generate pptx slides with Marp] **********************************
+skipping: [localhost]
+
 TASK [../.. : Generate pdf agenda with Pandoc] *********************************
 changed: [localhost]
 
 PLAY RECAP *********************************************************************
-localhost                  : ok=4    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=4    changed=4    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 This will generate two couples of files:
