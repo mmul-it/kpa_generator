@@ -12,6 +12,14 @@
     dest: "{{ pandoc_agenda_output_markdown }}"
     mode: '0640'
 
+- name: Create Pandoc slides book markdown
+  ansible.builtin.template:
+    src: book.md.j2
+    dest: "{{ pandoc_book_output_markdown }}"
+    mode: '0640'
+  when:
+    - pandoc_book_output_markdown is defined
+
 - name: Generate pdf slides with Marp
   ansible.builtin.shell: |
     marp --pdf \
@@ -46,5 +54,16 @@
       -o {{ pandoc_agenda_output_pdf }}
   when:
     - pandoc_agenda_output_pdf is defined
-  register: pandoc_cmd
-  changed_when: pandoc_cmd.rc == 0
+  register: pandoc_agenda_cmd
+  changed_when: pandoc_agenda_cmd.rc == 0
+
+- name: Generate pdf book with Pandoc
+  ansible.builtin.shell: |
+    pandoc \
+      {% if pandoc_book_template_file is defined %}--template={{ pandoc_book_template_file }}{% endif %} \
+      {{ pandoc_book_output_markdown }} \
+      -o {{ pandoc_book_output_pdf }}
+  when:
+    - pandoc_book_output_pdf is defined
+  register: pandoc_book_cmd
+  changed_when: pandoc_book_cmd.rc == 0

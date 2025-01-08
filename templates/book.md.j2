@@ -1,0 +1,36 @@
+---
+title: "{{ kpa_title }}"
+author: "{{ kpa_author }}"
+date: "{% if kpa_date is defined %}{{ kpa_date }}{% else %}{{ lookup('pipe', 'date +%Y-%m-%d') }}{% endif %}"
+{% if pandoc_agenda_background_image is defined %}
+background-image: "{{ pandoc_agenda_background_image }}"
+{% endif %}
+---
+
+{# Starting book contents print #}
+{% for slide in kpa_slides %}
+{% if slide.content is defined %}
+
+\newpage
+
+## {{ slide.title }}
+
+\newpage
+
+{% set text = lookup('file', slide.content) %}
+{% set ns = namespace(in_code_block = false) %}
+{% for line in text.split('\n') %}
+{% if line.startswith('# ') %}
+##{{ line }}
+{% elif line.startswith('## ') %}
+#{{ line }}
+{% elif line.startswith('![') %}
+{% set width = line | regex_search("width:(.*)[ \]]") | regex_replace('\]', '') | regex_replace(':', '=') | regex_replace('None', '') %}
+{% set height = line | regex_search("height:(.*)[ \]]") | regex_replace('\]', '') | regex_replace(':', '=') | regex_replace('None', '')%}
+{{ line | regex_replace('\[.*\]', '[]') }}{ {{ width }} {{ height }} }
+{% else %}
+{{ line }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{%- endfor %}
