@@ -30,9 +30,10 @@ kpa_project_dir: "{{ playbook_dir }}"
 # Slide set title
 kpa_title: "My slides set"
 
-# Author & Copyright info
+# Author, copyright and version info
 kpa_author: 'My author'
-kpa_copyright: '© 2023 My copyright'
+kpa_copyright: '© 2026 My copyright'
+kpa_version: 'v20260526'
 
 ###################
 # Pandoc settings #
