@@ -20,7 +20,8 @@ background-image: "{{ pandoc_agenda_background_image }}"
 {% set text = lookup('file', slide.content) %}
 {% set ns = namespace(in_code_block = false) %}
 {% for line in text.split('\n') %}
-{% if line.startswith('# ') %}
+{% if line.startswith('---') %}
+{% elif line.startswith('# ') %}
 ##{{ line }}
 {% elif line.startswith('## ') %}
 #{{ line }}
