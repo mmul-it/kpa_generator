@@ -1,0 +1,37 @@
+---
+title: "{{ kpa_title }}"
+author: "{{ kpa_author }}"
+date: "{% if kpa_version is defined %}{{ kpa_version }}{% else %}{{ lookup('pipe', 'date +%Y-%m-%d') }}{% endif %}"
+{% if pandoc_agenda_background_image is defined %}
+background-image: "{{ pandoc_agenda_background_image }}"
+{% endif %}
+---
+
+{% set ns = namespace(prev_topic='',in_code_block = false) %}
+
+{# Starting book contents print #}
+{% for slide in kpa_slides %}
+{% if slide.content is defined %}
+
+\newpage
+
+## {{ slide.title }}
+
+{% set text = lookup('file', slide.content) %}
+{% for line in text.split('\n') %}
+{% if line.startswith('# ') or line.startswith('## ') %}
+{% set current_topic = line | regex_replace('^#+\\s*', '') | regex_replace(' / [^/]*$') %}
+{% if current_topic != ns.prev_topic %}
+{% set ns.prev_topic = current_topic %}
+### {{ current_topic }}
+{% endif %}
+{% elif line.startswith('![') %}
+{% set width = line | regex_search("width:(.*)[ \]]") | regex_replace('\]', '') | regex_replace(':', '=') | regex_replace('None', '') %}
+{% set height = line | regex_search("height:(.*)[ \]]") | regex_replace('\]', '') | regex_replace(':', '=') | regex_replace('None', '')%}
+{{ line | regex_replace('\[.*\]', '[]') }}{ {{ width }} {{ height }} }
+{% else %}
+{{ line }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{%- endfor %}
