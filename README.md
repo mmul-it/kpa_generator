@@ -2,9 +2,9 @@ kpa_generator
 =============
 
 This role uses a [KPA Project](https://github.com/mmul-it/kpa) to generate
-[Marp](https://marp.app/#get-started) and [Pandoc](https://pandoc.org/MANUAL.html) compatible Markdown files usable to
-create beautiful presentations in `html`, `pdf` and `ppt` format with their
-agenda.
+[Marp](https://marp.app/#get-started) and [Pandoc](https://pandoc.org/MANUAL.html)
+compatible Markdown files usable to create beautiful presentations in `html`,
+`pdf` and `ppt` format with their agenda.
 By default it automates the creation of a pdf slides set and their pdf agenda.
 
 [![Lint and test project](https://github.com/mmul-it/kpa_generator/actions/workflows/main.yml/badge.svg)](https://github.com/mmul-it/kpa_generator/actions/workflows/main.yml)
@@ -33,15 +33,19 @@ kpa_title: "My slides set"
 # Author, copyright and version info
 kpa_author: 'My author'
 kpa_copyright: '© 2026 My copyright'
-kpa_version: 'v20260526'
+kpa_version: 'v20260616'
 
 ###################
 # Pandoc settings #
 ###################
 
-# Pandoc Agenda Markedown output files destination
+# Pandoc Agenda Markdown output files destination
 pandoc_agenda_output_markdown: "{{ kpa_project_dir }}/slides.agenda.md"
 pandoc_agenda_output_pdf: "{{ kpa_project_dir }}/slides.agenda.pdf"
+
+# Pandoc Book Markdown output file destination
+pandoc_book_output_markdown: "{{ kpa_project_dir }}/slides.agenda.md"
+pandoc_book_output_pdf: "{{ kpa_project_dir }}/slides.agenda.pdf"
 
 ###################
 # Marp settings   #
