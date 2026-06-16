@@ -5,6 +5,9 @@ name: Linter and test, trigger Ansible Galaxy and KPA GitHub Actions
 env:
   ANSIBLE_INVENTORY_UNPARSED_WARNING: 'False'
   ANSIBLE_LOCALHOST_WARNING: 'False'
+  GALAXY_GH_REPO: 'kpa_generator'
+  GALAXY_GH_USER: 'mmul'
+  GALAXY_ALT_URL: 'https://github.com/mmul-it/kpa_generator'
 
 on: [push]
 
@@ -53,10 +56,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Release Ansible Role to Galaxy
-        uses: hspaans/ansible-galaxy-action@v1
-        with:
-          api_key: ${{ secrets.GALAXY_API_KEY }}
+      - name: Trigger Ansible Galaxy Role Import
+        run: |
+          curl -X 'POST' \
+            "https://galaxy.ansible.com/api/v1/imports/" \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: Token ${{ secrets.GALAXY_API_KEY }}" \
+            --data-raw "{
+              'github_repo': '${GALAXY_GH_REPO}',
+              'github_user': '${GALAXY_GH_USER}',
+              'alternate_clone_url': '${GALAXY_ALT_URL}'
+            }"
+
+          echo "Import triggered! Check status at:"
+          echo "https://galaxy.ansible.com/ui/standalone/roles/mmul/kpa_generator/import_log/"
 
   trigger_kpa_rebuild:
     runs-on: ubuntu-latest
