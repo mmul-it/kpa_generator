@@ -5,12 +5,16 @@
     src: slides.md.j2
     dest: "{{ marp_output_markdown }}"
     mode: '0640'
+  when:
+    - marp_output_markdown is defined
 
 - name: Create Pandoc agenda markdown
   ansible.builtin.template:
     src: agenda.md.j2
     dest: "{{ pandoc_agenda_output_markdown }}"
     mode: '0640'
+  when:
+    - pandoc_agenda_output_markdown is defined
 
 - name: Create Pandoc slides book markdown
   ansible.builtin.template:
