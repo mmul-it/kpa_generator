@@ -5,9 +5,9 @@ galaxy_info:
   namespace: mmul
   author: Raoul Scarazzini (rasca@mmul.it)
   description: |
-    This role takes a KPA project (https://github.com/mmul-it/kpa),
-    creates a markdown files for both slides (to be processed by Marp)
-    and agenda (to be processed by pandoc) and generates rendered pdf files.
+    This role takes a KPA project (https://github.com/mmul-it/kpa) and creates
+    markdown files for slides (to be processed by Marp), agenda and book (to be
+    processed by pandoc) to generate rendered pdf files.
   license: license (MIT)
   min_ansible_version: '2'
   platforms:
