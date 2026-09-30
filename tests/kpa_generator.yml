@@ -1,8 +1,8 @@
 ---
 
-- hosts: localhost
+- name: Use a KPA Project to create Marp & Pandoc markdown and slide decks
+  hosts: localhost
   gather_facts: false
   connection: local
-  name: Use a KPA Project to create Marp & Pandoc markdown and slide decks
   roles:
     - role: ../..
